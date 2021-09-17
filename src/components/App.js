@@ -104,7 +104,7 @@ function App() {
 
   const [currentCards,setCurrentCards] = React.useState([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(([userInfo, cardList]) => {
         setCurrentUser(userInfo);
@@ -245,7 +245,7 @@ function App() {
     history.push('/sign-in')
   }
 
-  React.useEffect(() => {
+ useEffect(() => {
     tokenCheck();
   }, []);
 
