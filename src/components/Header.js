@@ -5,9 +5,6 @@ import logo from '../images/logo.svg';
 
 function Header({ email, onClick }) {
 
-  const [isOpen, setIsOpen] = React.useState(true);
-  const [isClicked, setIsClicked] = React.useState(false);
-
   return (
     <>
      <header className="header">

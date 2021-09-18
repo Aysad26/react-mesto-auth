@@ -19,7 +19,7 @@ function Card(props) {
   );
 
   function handleCardClick() {
-    props. onCardClick(props.dataCards);
+    props.onCardClick(props.dataCards);
   }  
 
   function handleCardLike(){

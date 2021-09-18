@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
 import api from '../utils/Api';
 import '../index.css';
 import '../App.css';
@@ -64,6 +64,8 @@ function App() {
 
   const history = useHistory();
 
+  const { pathname } = useLocation();
+
  
   function handleCardClick(dataCards) { 
     setSelectedCard(dataCards); 
@@ -88,8 +90,8 @@ function App() {
       }
     };
 
-    if (isEditProfilePopupOpen === true || isEditAvatarPopupOpen === true || isAddPlacePopupOpen === true || isImagePopupOpen === true || isInfoTooltipPopupOpen === true) {
-      window.addEventListener('keydown', handleEsc);
+    if (isEditProfilePopupOpen|| isEditAvatarPopupOpen || isAddPlacePopupOpen  || isImagePopupOpen|| isInfoTooltipPopupOpen ) {
+       window.addEventListener('keydown', handleEsc);
     };
 
     return () => {
@@ -104,7 +106,7 @@ function App() {
 
   const [currentCards,setCurrentCards] = React.useState([])
 
-  useEffect(() => {
+  React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(([userInfo, cardList]) => {
         setCurrentUser(userInfo);
@@ -157,7 +159,7 @@ function App() {
   function handleCardDelete(card) {
     api.deleteCard(card._id)
       .then(() => {
-        setCurrentCards(currentCards.filter(item => item._id !== card._id));
+        setCurrentCards((state) => state.filter((c) => c._id !== card._id));
         closeAllPopups();
       })
       .catch(err => console.log(err));
@@ -242,10 +244,10 @@ function App() {
   function onSignOut() {
     localStorage.removeItem('token');
     setLoggedIn(false)
-    history.push('/sign-in')
+    history.push("/sign-in");
   }
 
- useEffect(() => {
+ React.useEffect(() => {
     tokenCheck();
   }, []);
 

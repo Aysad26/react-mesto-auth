@@ -2,32 +2,40 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup (props){
-  const cardsNameRef = React.useRef();
-  const cardsLinkRef = React.useRef();
+
+  const [inputValue, setInputValue] = React.useState({ name: '', link: '', });
   
   React.useEffect(() => {
-    cardsNameRef.current.value = ""
-    cardsLinkRef.current.value = ""
+    setInputValue({ name: '', link: '' });
   }, [props.isOpen])
-  
-  function handleSubmit (e){
-      e.preventDefault();
-      props.onAddPlace({
-          name :cardsNameRef.current.value,
-          link :cardsLinkRef.current.value,
-      });
+
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setInputValue({
+        ...inputValue,
+        [name]: value,
+    });
   }
+  
+  function handleSubmit(event) {
+    event.preventDefault();
+    props.onAddPlace({
+        name: inputValue.name,
+        link: inputValue.link,
+    });
+}
 
     return(
         <PopupWithForm name ="popup_add-cards "  title ="Новое место" submitText={'Загрузить фото'} onSubmit={handleSubmit} isOpen={props.isOpen} onClose={props.onClose}>
             <fieldset className="form__input-container">
             <div className="form__item-container">
               <input
-                ref={cardsNameRef}
                 type="text"
                 className="form__item form__item_type_title"
                 id="title-input"
                 name="name"
+                onChange={handleInputChange}
+                value={inputValue.name}
                 placeholder="Название"
                 minLength={2}
                 maxLength={30}
@@ -37,11 +45,12 @@ function AddPlacePopup (props){
             </div>
             <div className="form__item-container">
               <input
-                ref={cardsLinkRef}
                 type="url"
                 className="form__item form__item_type_link"
                 id="link-input"
                 name="link"
+                onChange={handleInputChange}
+                value={inputValue.link}
                 placeholder="Ссылка на картинку"
                 required
               />
