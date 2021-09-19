@@ -4,7 +4,7 @@ import success from '../images/success.svg';
 
 function InfoTooltip({ isOpen, onClose, isSuccess, message }) {
   return (
-    <section className={`popup  ${isOpen ? "popup_opened":""}`}  isOpen={isOpen} onClose={onClose}>
+    <div className={`popup  ${isOpen ? "popup_opened":""}`}  isOpen={isOpen} onClose={onClose}>
       <div className="popup__window popup__window_message">
         <button 
           type="button" 
@@ -15,7 +15,7 @@ function InfoTooltip({ isOpen, onClose, isSuccess, message }) {
         <p className="popup__heading popup__heading_message">{message}</p>
       </div>
       <div className="popup__overlay popup__overlay_edit" onClick={onClose} />
-    </section>
+    </div>
   );
 }
 

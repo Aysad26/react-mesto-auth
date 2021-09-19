@@ -36,7 +36,7 @@ function Register({ onRegister }) {
               name="email" 
               placeholder="Email" 
               value={inputValue.email}
-              autocomplete="off" 
+              autoComplete="off" 
               required 
             />
             <input 
@@ -45,7 +45,7 @@ function Register({ onRegister }) {
               onChange={handleInputChange}  
               name="password" 
               placeholder="Пароль" 
-              autocomplete="off" 
+              autoComplete="off" 
               value={inputValue.password}
               required 
             />

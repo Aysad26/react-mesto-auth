@@ -37,7 +37,7 @@ function Login({ onLogin }) {
               name="email" 
               value={inputValue.email}
               placeholder="Email" 
-              autocomplete="off" 
+              autoComplete="off" 
               required 
             />
             <input 
@@ -47,7 +47,7 @@ function Login({ onLogin }) {
               name="password" 
               value={inputValue.password}
               placeholder="Пароль" 
-              autocomplete="off" 
+              autoComplete="off" 
               required 
             />
           </fieldset>
