@@ -3,7 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import '../index.css';
 import logo from '../images/logo.svg';
 
-function Header({ email, onClick }) {
+function Header({ email }) {
 
   return (
     <>
@@ -24,7 +24,7 @@ function Header({ email, onClick }) {
             <Route path="/">
               <nav className="menu">
                 <p className="menu__item">{email}</p>
-                <Link onClick={onClick} className="menu__item">Выйти</Link>
+                <Link to="/sign-up" className="menu__item">Выйти</Link>
               </nav>
             </Route>
           </Switch>

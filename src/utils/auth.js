@@ -16,11 +16,8 @@ export const register = (email, password) => {
     },
     body: JSON.stringify({email, password})
   })
-  .then((response) => {
-    return response.json();
-  })
   .then((res) => checkStatus(res));
-};
+}
 
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {

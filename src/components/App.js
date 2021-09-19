@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import api from '../utils/Api';
 import '../index.css';
 import '../App.css';
@@ -64,8 +64,6 @@ function App() {
 
   const history = useHistory();
 
-  const { pathname } = useLocation();
-
  
   function handleCardClick(dataCards) { 
     setSelectedCard(dataCards); 
@@ -91,7 +89,8 @@ function App() {
     };
 
     if (isEditProfilePopupOpen|| isEditAvatarPopupOpen || isAddPlacePopupOpen  || isImagePopupOpen|| isInfoTooltipPopupOpen ) {
-       window.addEventListener('keydown', handleEsc);
+ 
+      window.addEventListener('keydown', handleEsc);
     };
 
     return () => {
@@ -106,7 +105,7 @@ function App() {
 
   const [currentCards,setCurrentCards] = React.useState([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(([userInfo, cardList]) => {
         setCurrentUser(userInfo);
@@ -188,13 +187,11 @@ function App() {
           setMessage('Вы успешно зарегистрировались!');
         }
       })
-      .catch((err) => {
+      .catch((res) => {
         setMessage('Что-то пошло не так! Попробуйте ещё раз');
         setInfoTooltipPopupOpen(true);
         setIsSuccessful(false);
-        if (err === 400) {
-          return console.log('некорректно заполнено одно из полей');
-        }
+        console.log(`Ошибка:${res}`)
       })
   }
   
@@ -244,7 +241,7 @@ function App() {
   function onSignOut() {
     localStorage.removeItem('token');
     setLoggedIn(false)
-    history.push("/sign-in");
+    history.push('/sign-in')
   }
 
  React.useEffect(() => {
