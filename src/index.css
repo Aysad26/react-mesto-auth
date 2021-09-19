@@ -51,6 +51,7 @@
 @import url(./blocks/form-section/form-section.css);
 @import url(./blocks/form-section/__heading/form-section__heading.css);
 @import url(./blocks/form-section/__paragraph/form-section__paragraph.css);
+@import url(./blocks/form-section/__link/form-section__link.css);
 @import url(./blocks/button/button.css);
 @import url(./blocks/button/_type/button_type_add.css);
 @import url(./blocks/button/__add-icon/button__add-icon.css);

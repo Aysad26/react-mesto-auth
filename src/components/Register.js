@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 
 function Register({ onRegister }) {
 
@@ -50,7 +51,7 @@ function Register({ onRegister }) {
             />
           </fieldset>
           <button className="button button_type_submit button_theme_dark" type="submit">Зарегистрироваться</button>
-          <p className="form-section__paragraph">Уже зарегистрированы? Войти</p>
+          <p className="form-section__paragraph">Уже зарегистрированы? <Link to="/sign-in" className="form-section__link">Войти</Link></p>
         </form>
       </div>  
     </div>
